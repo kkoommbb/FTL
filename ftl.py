@@ -12,22 +12,22 @@ from flask_flatpages import FlatPages, pygments_style_defs
 from flask_frozen import Freezer
 
 DEBUG = True
-# FLATPAGES_LESSON_AUTO_RELOAD = DEBUG
-# FLATPAGES_LESSON_EXTENSION = '.md'
-# FLATPAGES_LESSON_ROOT = os.path.join('content', 'lessons') 
-# FLATPAGES_INFO_MARKDOWN_EXTENSIONS=['codehilite','mdx_math']
+FLATPAGES_LESSON_AUTO_RELOAD = DEBUG
+FLATPAGES_LESSON_EXTENSION = '.md'
+FLATPAGES_LESSON_ROOT = os.path.join('content', 'lessons') 
+FLATPAGES_INFO_MARKDOWN_EXTENSIONS=['codehilite','mdx_katex']
 
 
 FLATPAGES_INFO_AUTO_RELOAD = DEBUG
 FLATPAGES_INFO_EXTENSION = '.md'
-FLATPAGES_INFO_ROOT = 'content'
-# FLATPAGES_INFO_ROOT = os.path.join('content', 'info')  
+# FLATPAGES_INFO_ROOT = 'content'
+FLATPAGES_INFO_ROOT = os.path.join('content', 'info')  
 
 FLATPAGES_INFO_MARKDOWN_EXTENSIONS=['codehilite','mdx_katex']
 
 
 app = Flask(__name__)
-# lessonpages = FlatPages(app, name="lesson")
+lessonpages = FlatPages(app, name="lesson")
 infopages = FlatPages(app, name="info")
 freezer = Freezer(app)
 app.config.from_object(__name__)
@@ -78,7 +78,7 @@ def lessons():
 
 @app.route('/pages/<path:path>')
 def info(path):
-    page = infopages.get_or_404(os.path.join('info', path))
+    page = infopages.get_or_404(path)
     return render_template('infopage.html', page=page)
 
 
