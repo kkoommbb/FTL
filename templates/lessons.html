@@ -1,0 +1,94 @@
+{% extends "main.html" %}
+{% block lessons %}            
+<div id="11A" class="tab-pane fade in active">
+{% for lesson in lessons['11A'] %}
+    <div class="row">
+        {% if curdate < lesson.date %}
+        <div class="text-muted">
+        {% endif %}
+            <div class="col-md-1">
+                <p>
+                    {{ lesson.date }}
+                </p>
+            </div>
+            <div class="col-md-2">
+                {% for classwork in lesson.class %}
+                    <h5>{{ classwork.theme }}</h5>
+                {% endfor %}
+            </div>
+            <div class="col-md-5">
+                    {% for classwork in lesson.class %}
+                        {{ classwork.html|safe }}
+                    {% endfor %}
+            </div>
+        {% if curdate < lesson.date %}
+        </div>
+        {% endif %}
+        <div class="col-md-4 dz">
+            {% for homework in lesson.home %}
+                {{ homework.html|safe }}
+            {% endfor %}
+        </div>
+    </div>
+{% endfor %}
+</div>
+<div id="11B" class="tab-pane fade">
+{% for lesson in lessons['11B'] %}
+    <div class="row">
+        {% if curdate < lesson.date %}
+        <div class="text-muted">
+        {% endif %}
+            <div class="col-md-1">
+                <p>
+                    {{ lesson.date }}
+                </p>
+            </div>
+            <div class="col-md-2">
+                {% for classwork in lesson.class %}
+                    <h5>{{ classwork.theme }}</h5>
+                {% endfor %}
+            </div>
+            <div class="col-md-5">
+                    {% for classwork in lesson.class %}
+                        {{ classwork.html|safe }}
+                    {% endfor %}
+            </div>
+        {% if curdate < lesson.date %}
+        </div>
+        {% endif %}
+        <div class="col-md-4 dz">
+            {% for homework in lesson.home %}
+                {{ homework.html|safe }}
+            {% endfor %}
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+{#
+{% for lesson in lessons['11A'] %}
+    <p>
+    <small>{{ lesson.date }}</small>
+    </p>
+    {% for classwork in lesson.class %}
+        <h2>{{ classwork.theme }}</h2>
+    {% endfor %}
+
+    {% for classwork in lesson.class %}
+        {{ classwork.html|safe }}
+    {% endfor %}
+
+    {% for homework in lesson.home %}
+        {{ homework.html|safe }}
+    {% endfor %}
+
+{% endfor %}
+
+#}
