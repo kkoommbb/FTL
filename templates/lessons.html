@@ -1,6 +1,15 @@
 {% extends "main.html" %}
 {% block lessons %}            
 <div id="11A" class="tab-pane fade in active">
+{% for new in news['11A'] %}
+    <div class="row">
+        <div class="col-md-10">
+            <div class="alert alert-danger" role="alert">
+                <b>{{ new.date|datetime|datetimeformat(format='d MMMM') }}</b> {{ new.html|safe }}
+            </div>
+        </div>
+    </div>
+{% endfor %}
 {% for lesson in lessons['11A'] %}
     <div class="row">
         {% if curdate < lesson.date %}
@@ -8,12 +17,12 @@
         {% endif %}
             <div class="col-md-1">
                 <p>
-                    {{ lesson.date }}
+                    {{ lesson.date|datetime|datetimeformat(format='d MMM') }}
                 </p>
             </div>
             <div class="col-md-2">
                 {% for classwork in lesson.class %}
-                    <h5>{{ classwork.theme }}</h5>
+                    <b>{{ classwork.theme }}</b>
                 {% endfor %}
             </div>
             <div class="col-md-5">
@@ -33,6 +42,15 @@
 {% endfor %}
 </div>
 <div id="11B" class="tab-pane fade">
+{% for new in news['11B'] %}
+    <div class="row">
+        <div class="col-md-10">
+            <div class="alert alert-danger" role="alert">
+                <b>{{ new['date'] }}</b> {{ new.html|safe }}
+            </div>
+        </div>
+    </div>
+{% endfor %}
 {% for lesson in lessons['11B'] %}
     <div class="row">
         {% if curdate < lesson.date %}
@@ -40,12 +58,12 @@
         {% endif %}
             <div class="col-md-1">
                 <p>
-                    {{ lesson.date }}
+                    {{ lesson.date|datetime|datetimeformat(format='d MMM') }}
                 </p>
             </div>
             <div class="col-md-2">
                 {% for classwork in lesson.class %}
-                    <h5>{{ classwork.theme }}</h5>
+                    <b>{{ classwork.theme }}</b>
                 {% endfor %}
             </div>
             <div class="col-md-5">
